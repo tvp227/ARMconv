@@ -1,5 +1,6 @@
 # ARMconv 
 #### *Azure Sentinel Playbook and Workbook Converter*
+#### Author: Tom Porter
 
 ## Overview
 
