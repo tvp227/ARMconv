@@ -18,11 +18,9 @@ def remove_properties_recursively(resource_obj):
 
 def convert_workbooks_to_arm(input_file_path, output_file_path):
     try:
-        with open(input_file_path, 'r') as file:
+        with open(input_file_path, 'r', encoding='utf-8') as file:
             raw_data = file.read()
-            # Handle non-ASCII characters (Emoji's)
-            data = ''.join(char for char in raw_data if ord(char) < 128)
-            json_data = json.loads(data)
+            json_data = json.loads(raw_data)
 
             # Extract serializedData from the provided reference
             serialized_data = json_data.get("resources", [{}])[0].get("properties", {}).get("serializedData", {})
@@ -83,7 +81,7 @@ def convert_workbooks_to_arm(input_file_path, output_file_path):
         "apiVersion": "2020-02-12",
         "properties": {
             "displayName": "[concat(parameters('workbook-name'), ' - ', parameters('formattedTimeNow'))]",
-            "serializedData":(serialized_data),
+            "serializedData": (serialized_data), # prefix this with ' json.dumps ' if having formating issues!!
             "version": "1.0",
             "sourceId": "[concat(resourceGroup().id, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('workspace'))]",
             "category": "sentinel",
