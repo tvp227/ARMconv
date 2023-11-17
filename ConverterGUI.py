@@ -18,7 +18,7 @@ class MyGUI:
         self.background_frame = ttk.Frame(master)
         self.background_frame.place(x=0, y=0, relwidth=1, relheight=1)
 
-        self.background_image = Image.open("Background.png")
+        self.background_image = Image.open("Prereqs/Background.png")
         self.background_image = ImageTk.PhotoImage(self.background_image)
         self.background_label = tk.Label(self.background_frame, image=self.background_image)
         self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
@@ -58,13 +58,13 @@ class MyGUI:
 
     # Launchers
     def launch_playbook_application(self):
-        subprocess.run(["python", "PlayBookConv.py"])
+        subprocess.run(["python", "Tools/PlayBookConv.py"])
 
     def launch_workbook_application(self):
-        subprocess.run(["python", "WorkBookConv.py"])
+        subprocess.run(["python", "Tools/WorkBookConv.py"])
     
     def launch_KQL_application(self):
-        subprocess.run(["python", "KQLConv.py"])
+        subprocess.run(["python", "Tools/KQLConv.py"])
 
 if __name__ == "__main__":
     root = tk.Tk()
