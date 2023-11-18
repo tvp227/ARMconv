@@ -37,23 +37,19 @@ def generate_readme_md(rules_data):
     with open("README.md", "w") as readme_file:
         readme_file.write(readme_content)
 
-def browse_files():
+def browse_AnalyticRules():
     files = filedialog.askopenfilenames(
-        title="Select JSON files",
+        title="Select Playbook JSON Files",
         filetypes=(("JSON files", "*.json"), ("all files", "*.*"))
     )
     if files:
-        rules_data = process_files(files)
-        generate_readme_md(rules_data)
-        print("README.md generated successfully.")
-
-# Create the main window
-root = tk.Tk()
-root.title("Sentinel Rules Documentation Generator")
-
-# Create and pack a button for file selection
-button = tk.Button(root, text="Select JSON Files", command=browse_files)
-button.pack(pady=20)
+        playbooks_data = process_files(files)
+        generate_readme_md(playbooks_data)
+        print("readme.md generated successfully.")
 
 # Run the Tkinter event loop
-root.mainloop()
+root = tk.Tk()
+root.withdraw()  # Hide the main window
+
+# Prompt user to select playbook files
+browse_AnalyticRules()
