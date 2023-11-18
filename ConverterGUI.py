@@ -7,7 +7,7 @@ class MyGUI:
     def __init__(self, master):
         self.master = master
         master.title("ARM-Converter-Tool")
-        master.geometry("300x400")
+        master.geometry("390x600")
         master.resizable(False, False)
 
         # Create a label with the title
@@ -48,13 +48,19 @@ class MyGUI:
         self.convert_playbook_button.place(relx=0.5, rely=0.2, anchor=tk.CENTER)
 
         self.convert_workbook_button = ttk.Button(master, text="Convert Workbook", command=self.launch_workbook_application, style="TButton")
-        self.convert_workbook_button.place(relx=0.5, rely=0.4, anchor=tk.CENTER)
+        self.convert_workbook_button.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
 
         self.convert_KQL_button = ttk.Button(master, text="Convert KQL", command=self.launch_KQL_application, style="TButton")
-        self.convert_KQL_button.place(relx=0.5, rely=0.6, anchor=tk.CENTER)
+        self.convert_KQL_button.place(relx=0.5, rely=0.4, anchor=tk.CENTER)
+
+        self.convert_KQL_button = ttk.Button(master, text="Document Creator AR", command=self.launch_DCAR_application, style="TButton")
+        self.convert_KQL_button.place(relx=0.75, rely=0.5, anchor=tk.CENTER)
+
+        self.convert_KQL_button = ttk.Button(master, text="Document Creator PB ", command=self.launch_DCPB_application, style="TButton")
+        self.convert_KQL_button.place(relx=0.25, rely=0.5, anchor=tk.CENTER)
         #===
         self.exit_button = ttk.Button(master, text="Exit", command=master.destroy, style="Exit.TButton")
-        self.exit_button.place(relx=0.5, rely=0.9, anchor=tk.CENTER)
+        self.exit_button.place(relx=0.5, rely=0.7, anchor=tk.CENTER)
 
     # Launchers
     def launch_playbook_application(self):
@@ -65,6 +71,12 @@ class MyGUI:
     
     def launch_KQL_application(self):
         subprocess.run(["python", "Tools/KQLConv.py"])
+    
+    def launch_DCAR_application(self):
+        subprocess.run(["python", "Tools/DocumentCreatorAR.py"])
+    
+    def launch_DCPB_application(self):
+        subprocess.run(["python", "Tools/DocumentCreatorPB.py"])
 
 if __name__ == "__main__":
     root = tk.Tk()
