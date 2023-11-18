@@ -47,7 +47,7 @@ This suite of tools is designed to assist security engineers in Azure Sentinel d
 ## Example
 #### *GUI- All the tools available*
 
-![Screenshot 2023-11-16 221501](https://github.com/tvp227/ARMconv/assets/46229276/ff8297ac-340a-40cd-b588-166440b3c8ae)
+![image](https://github.com/tvp227/ARMconv/assets/46229276/adf9c8b7-6d76-453b-9b26-48b96164ba12)
 
 #### *When converting templates it will lists the variables and highlights the conversions being implemented*
 
