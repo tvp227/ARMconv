@@ -5,6 +5,7 @@ from PIL import Image, ImageTk
 import subprocess
 
 def count_json_files(folder_path):
+    # Function to count JSON files in the specified folder_path
     json_count = {'Detections': 0, 'Hunting': 0, 'Playbooks': 0, 'Workbooks': 0, 'Total': 0}
 
     for root, dirs, files in os.walk(folder_path):
@@ -26,6 +27,7 @@ def count_json_files(folder_path):
     return json_count
 
 def display_results_on_treeview(folder_path, tree):
+    # Function to display JSON file count information in the treeview
     result = count_json_files(folder_path)
 
     # Clear existing items in the treeview
@@ -41,6 +43,7 @@ def display_results_on_treeview(folder_path, tree):
 
 class MyGUI:
     def __init__(self, master):
+        # GUI initialization method
         self.master = master
         master.title("ARM Templating Tool")
         master.geometry("680x380")
@@ -105,7 +108,15 @@ class MyGUI:
 
         self.convert_DCPB_button = ttk.Button(master, text="Document Creator PB", command=self.launch_DCPB_application, style="TButton")
         self.convert_DCPB_button.place(relx=0.1, rely=button_y, anchor=tk.W)
-        button_y += button_spacing
+
+        # Create an Entry widget to display the selected folder_path
+        self.folder_path_var = tk.StringVar()
+        self.folder_path_entry = ttk.Entry(master, textvariable=self.folder_path_var, state='readonly')
+        self.folder_path_entry.place(relx=0.92, rely=0.5, anchor=tk.CENTER)
+
+        # Create a Browse button to select the folder_path
+        self.browse_button = ttk.Button(master, text="Browse", command=self.browse_folder)
+        self.browse_button.place(relx=0.92, rely=0.55, anchor=tk.CENTER)
 
         # Create an exit button
         self.exit_button = ttk.Button(master, text="Exit", command=master.destroy, style="Exit.TButton")
@@ -126,24 +137,40 @@ class MyGUI:
 
     # Launchers
     def launch_playbook_application(self):
+        # Function to launch the Playbook application
         subprocess.run(["python", "Tools/PlayBookConv.py"])
 
     def launch_workbook_application(self):
+        # Function to launch the Workbook application
         subprocess.run(["python", "Tools/WorkBookConv.py"])
     
     def launch_KQL_application(self):
+        # Function to launch the KQL application
         subprocess.run(["python", "Tools/KQLConv.py"])
     
     def launch_DCAR_application(self):
+        # Function to launch the Document Creator AR application
         subprocess.run(["python", "Tools/DocumentCreatorAR.py"])
     
     def launch_DCPB_application(self):
+        # Function to launch the Document Creator PB application
         subprocess.run(["python", "Tools/DocumentCreatorPB.py"])
 
+    def browse_folder(self):
+        # Function to allow the user to select a folder and set the selected folder_path
+        folder_path = filedialog.askdirectory()
+        if folder_path:
+            self.folder_path_var.set(folder_path)
+            self.refresh_json_count()
+
     def refresh_json_count(self):
-        # Hardcoded directory path
-        folder_path = "C:\Dev\ztf-sentinel"
-        display_results_on_treeview(folder_path, self.tree)
+        # Function to refresh the JSON file count information
+        # Get the folder_path from the Entry widget
+        folder_path = self.folder_path_var.get()
+
+        # Check if folder_path is not empty before proceeding
+        if folder_path:
+            display_results_on_treeview(folder_path, self.tree)
 
 if __name__ == "__main__":
     root = tk.Tk()
