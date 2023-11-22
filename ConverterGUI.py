@@ -116,7 +116,7 @@ class MyGUI:
 
         # Create a Browse button to select the folder_path
         self.browse_button = ttk.Button(master, text="Browse", command=self.browse_folder)
-        self.browse_button.place(relx=0.92, rely=0.55, anchor=tk.CENTER)
+        self.browse_button.place(relx=0.78, rely=0.6, anchor=tk.CENTER)
 
         # Create an exit button
         self.exit_button = ttk.Button(master, text="Exit", command=master.destroy, style="Exit.TButton")
