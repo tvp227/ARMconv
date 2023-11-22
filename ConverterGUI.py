@@ -82,7 +82,7 @@ class MyGUI:
     def __init__(self, master):
         # GUI initialization method
         self.master = master
-        master.title("ARM Templating Tool")
+        master.title("Sentinel DevOps Tooling")
         master.geometry("800x600")
         master.resizable(False, False)
 
@@ -96,7 +96,7 @@ class MyGUI:
         self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         # Create a label with the title
-        title_label = ttk.Label(master, text="ARM Templating Tool", font=("Helvetica", 16))
+        title_label = ttk.Label(master, text="Sentinel DevOps Tooling", font=("Helvetica", 16))
         title_label.place(relx=0.5, rely=0.05, anchor=tk.CENTER)
 
         # Create a label with the author
