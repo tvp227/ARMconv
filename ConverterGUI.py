@@ -186,14 +186,13 @@ class MyGUI:
                   )
 
         # Place the treeview
-        self.tree.place(relx=0.4, rely=0.42, anchor=tk.W, width=460, height=250)
+        self.tree.place(relx=0.295, rely=0.42, anchor=tk.W, width=530, height=250)
 
         # Create a vertical scrollbar
-        tree_scrollbar = ttk.Scrollbar(master, orient="vertical", command=self.tree.yview)
-        tree_scrollbar.place(relx=0.975, rely=0.37, anchor=tk.E, height=200)
-
+       ## tree_scrollbar = ttk.Scrollbar(master, orient="vertical", command=self.tree.yview)
+       ## tree_scrollbar.place(relx=0.9, rely=0.37, anchor=tk.E, height=200)                ## Cant get scroll bar working propely 
         # Configure treeview to use the scrollbar
-        self.tree.configure(yscrollcommand=tree_scrollbar.set)
+       ## self.tree.configure(yscrollcommand=tree_scrollbar.set)
 
         # Create a button to refresh the JSON file count information
         self.refresh_button = ttk.Button(master, text="Refresh", command=self.refresh_json_count, style="TButton")
