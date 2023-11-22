@@ -148,7 +148,7 @@ class MyGUI:
         self.folder_path_entry.place(relx=0.815, rely=0.65, anchor=tk.CENTER)
 
         self.browse_button = ttk.Button(master, text="Browse", command=self.browse_folder, style="TButton")
-        self.browse_button.place(relx=0.78, rely=0.7, anchor=tk.CENTER)
+        self.browse_button.place(relx=0.78, rely=0.83, anchor=tk.CENTER)
 
         self.exit_button = ttk.Button(master, text="Exit", command=master.destroy, style="Exit.TButton")
         self.exit_button.place(relx=0.1, rely=0.8, anchor=tk.W)
@@ -200,7 +200,7 @@ class MyGUI:
         self.tree_schema_count.place(relx=0.295, rely=0.7, anchor=tk.W, width=530, height=120)
 
         self.refresh_button = ttk.Button(master, text="Refresh", command=self.refresh_json_count, style="TButton")
-        self.refresh_button.place(relx=0.92, rely=0.7, anchor=tk.CENTER)
+        self.refresh_button.place(relx=0.9, rely=0.83, anchor=tk.CENTER)
 
         self.refresh_json_count()
 
