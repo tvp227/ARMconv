@@ -1,5 +1,8 @@
 import os
 import json
+import tkinter as tk
+from tkinter import filedialog
+import subprocess
 
 def process_json_file(file_path, missing_title_count, missing_description_count):
     with open(file_path, 'r', encoding='utf-8') as file:
@@ -31,6 +34,14 @@ def process_folder(folder_path):
     print(f"Total Playbooks Missing or Empty Title: {missing_title_count[0]}")
     print(f"Total Playbooks Missing or Empty Description: {missing_description_count[0]}")
 
-if __name__ == "__main__":
-    folder_path = "C:\Dev\ztf-sentinel\Playbooks"  # Replace with the path to your folder
-    process_folder(folder_path)
+def browse_playbook():
+   folder_path = filedialog.askdirectory(title="Select Folder with JSON Files")
+   if folder_path:
+       playbooks_data = process_folder(folder_path)
+
+# Run the Tkinter event loop
+root = tk.Tk()
+root.withdraw()  
+# Prompt user to select folder with JSON files
+browse_playbook()
+
