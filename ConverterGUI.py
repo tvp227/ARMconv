@@ -113,6 +113,12 @@ class MyGUI:
                         background="purple4",
                         foreground="white"
                         )
+        style.configure("PS.TButton",
+                        font=("Helvetica", 10),
+                        padding=5,
+                        background="blue2",
+                        foreground="white"
+                        )
 
         style.configure("Exit.TButton",
                         font=("Helvetica", 10),
@@ -142,6 +148,11 @@ class MyGUI:
 
         self.convert_DCPB_button = ttk.Button(master, text="Document Creator PB", command=self.launch_DCPB_application, style="TButton")
         self.convert_DCPB_button.place(relx=0.1, rely=button_y, anchor=tk.W)
+        button_y += button_spacing
+
+        self.convert_PS1_button = ttk.Button(master, text="AzureCLI", command=self.launch_PS1_application, style="PS.TButton")
+        self.convert_PS1_button.place(relx=0.1, rely=button_y, anchor=tk.W)
+        button_y += button_spacing
 
         self.folder_path_var = tk.StringVar()
         self.folder_path_entry = ttk.Entry(master, textvariable=self.folder_path_var, state='readonly', font=("Helvetica", 10))
@@ -151,7 +162,8 @@ class MyGUI:
         self.browse_button.place(relx=0.78, rely=0.83, anchor=tk.CENTER)
 
         self.exit_button = ttk.Button(master, text="Exit", command=master.destroy, style="Exit.TButton")
-        self.exit_button.place(relx=0.1, rely=0.8, anchor=tk.W)
+        self.exit_button.place(relx=0.1, rely=button_y, anchor=tk.W)
+        button_y += button_spacing
 
         self.tree_json_count = ttk.Treeview(master, columns=("Category", "Count"), show="headings", height=5)
 
@@ -218,6 +230,9 @@ class MyGUI:
 
     def launch_DCPB_application(self):
         subprocess.run(["python", "Tools/DocumentCreatorPB.py"])
+    
+    def launch_PS1_application(self):
+        subprocess.run(["powershell", "Powershell/Playbook_ARM_Template_Generator.ps1"])
 
     def browse_folder(self):
         folder_path = filedialog.askdirectory()
