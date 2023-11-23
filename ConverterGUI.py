@@ -110,14 +110,14 @@ class MyGUI:
         style.configure("TButton",
                         font=("Helvetica", 10),
                         padding=5,
-                        background="#4CAF50",
+                        background="purple4",
                         foreground="white"
                         )
 
         style.configure("Exit.TButton",
                         font=("Helvetica", 10),
                         padding=5,
-                        background="#FF5733",
+                        background="red",
                         foreground="white"
                         )
 
@@ -159,18 +159,18 @@ class MyGUI:
         self.tree_json_count.heading("Count", text="Count", anchor=tk.CENTER)
 
         style.configure("Treeview",
-                        background="#D3D3D3",
-                        fieldbackground="#D3D3D3"
+                        background="white",
+                        fieldbackground="grey"
                         )
 
         style.configure("Treeview.Heading",
                         font=("Helvetica", 10, "bold"),
-                        background="#696969",
+                        background="black",
                         foreground="white"
                         )
 
         style.map("Treeview",
-                  background=[("selected", "#347083")],
+                  background=[("selected", "grey4")],
                   foreground=[("selected", "white")]
                   )
 
@@ -182,18 +182,18 @@ class MyGUI:
         self.tree_schema_count.heading("Count", text="Count", anchor=tk.CENTER)
 
         style.configure("Treeview",
-                        background="#D3D3D3",
-                        fieldbackground="#D3D3D3"
+                        background="",
+                        fieldbackground="white"
                         )
 
         style.configure("Treeview.Heading",
                         font=("Helvetica", 10, "bold"),
-                        background="#696969",
+                        background="grey",
                         foreground="white"
                         )
 
         style.map("Treeview",
-                  background=[("selected", "#347083")],
+                  background=[("selected", "black")],
                   foreground=[("selected", "white")]
                   )
 
