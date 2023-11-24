@@ -129,47 +129,48 @@ class MyGUI:
 
         button_spacing = 0.1
         button_y = 0.25
-
+        
+        #Convert Playbook
         self.convert_playbook_button = ttk.Button(master, text="Convert Playbook", command=self.launch_playbook_application, style="TButton")
         self.convert_playbook_button.place(relx=0.1, rely=button_y, anchor=tk.W)
         button_y += button_spacing
-
+        #Convert Workbook
         self.convert_workbook_button = ttk.Button(master, text="Convert Workbook", command=self.launch_workbook_application, style="TButton")
         self.convert_workbook_button.place(relx=0.1, rely=button_y, anchor=tk.W)
         button_y += button_spacing
-
+        #Convert KQL button
         self.convert_KQL_button = ttk.Button(master, text="Convert KQL", command=self.launch_KQL_application, style="TButton")
         self.convert_KQL_button.place(relx=0.1, rely=button_y, anchor=tk.W)
         button_y += button_spacing
-
+        #Document Creator AR button
         self.convert_DCAR_button = ttk.Button(master, text="Document Creator AR", command=self.launch_DCAR_application, style="TButton")
         self.convert_DCAR_button.place(relx=0.1, rely=button_y, anchor=tk.W)
         button_y += button_spacing
-
+        #Document Creator PB button
         self.convert_DCPB_button = ttk.Button(master, text="Document Creator PB", command=self.launch_DCPB_application, style="TButton")
         self.convert_DCPB_button.place(relx=0.1, rely=button_y, anchor=tk.W)
         button_y += button_spacing
-
+        #PS Button 
         self.convert_PS1_button = ttk.Button(master, text="AzureCLI", command=self.launch_PS1_application, style="PS.TButton")
         self.convert_PS1_button.place(relx=0.1, rely=button_y, anchor=tk.W)
         button_y += button_spacing
-
+        #Dir Display Box
         self.folder_path_var = tk.StringVar()
         self.folder_path_entry = ttk.Entry(master, textvariable=self.folder_path_var, state='readonly', font=("Helvetica", 10))
-        self.folder_path_entry.place(relx=0.815, rely=0.65, anchor=tk.CENTER)
-
+        self.folder_path_entry.place(relx=0.86, rely=0.18, anchor=tk.CENTER)
+        #Browse Button
         self.browse_button = ttk.Button(master, text="Browse", command=self.browse_folder, style="TButton")
         self.browse_button.place(relx=0.78, rely=0.83, anchor=tk.CENTER)
-
+        #Refresh Button
+        self.refresh_button = ttk.Button(master, text="Refresh", command=self.refresh_json_count, style="TButton")
+        self.refresh_button.place(relx=0.9, rely=0.83, anchor=tk.CENTER)
+        self.refresh_json_count()
+        #Exit Button
         self.exit_button = ttk.Button(master, text="Exit", command=master.destroy, style="Exit.TButton")
         self.exit_button.place(relx=0.1, rely=button_y, anchor=tk.W)
         button_y += button_spacing
 
-        self.tree_json_count = ttk.Treeview(master, columns=("Category", "Count"), show="headings", height=5)
-
-        self.tree_json_count.heading("Category", text="Category", anchor=tk.CENTER)
-        self.tree_json_count.heading("Count", text="Count", anchor=tk.CENTER)
-
+        #Tree styling
         style.configure("Treeview",
                         background="white",
                         fieldbackground="grey"
@@ -185,37 +186,28 @@ class MyGUI:
                   background=[("selected", "grey4")],
                   foreground=[("selected", "white")]
                   )
+        #Json Count Tree
+        self.tree_json_count = ttk.Treeview(master, columns=("Category", "Count"), show="headings", height=5)
 
-        self.tree_json_count.place(relx=0.295, rely=0.42, anchor=tk.W, width=530, height=120)
+        self.tree_json_count.heading("Category", text="Category", anchor=tk.CENTER)
+        self.tree_json_count.heading("Count", text="Count", anchor=tk.CENTER)
 
+        self.tree_json_count.place(relx=0.295, rely=0.52, anchor=tk.W, width=530, height=120)
+        #Schema Count Tree
         self.tree_schema_count = ttk.Treeview(master, columns=("Schema", "Count"), show="headings", height=5)
 
         self.tree_schema_count.heading("Schema", text="Schema", anchor=tk.CENTER)
         self.tree_schema_count.heading("Count", text="Count", anchor=tk.CENTER)
 
-        style.configure("Treeview",
-                        background="",
-                        fieldbackground="white"
-                        )
+        self.tree_schema_count.place(relx=0.295, rely=0.71, anchor=tk.W, width=530, height=120)
+        #Meta Data Tree
+        self.tree_MetaData_count = ttk.Treeview(master, columns=("Schema", "Count"), show="headings", height=5)
 
-        style.configure("Treeview.Heading",
-                        font=("Helvetica", 10, "bold"),
-                        background="grey",
-                        foreground="white"
-                        )
+        self.tree_MetaData_count.heading("Schema", text="Schema", anchor=tk.CENTER)
+        self.tree_MetaData_count.heading("Count", text="Count", anchor=tk.CENTER)
 
-        style.map("Treeview",
-                  background=[("selected", "black")],
-                  foreground=[("selected", "white")]
-                  )
-
-        self.tree_schema_count.place(relx=0.295, rely=0.7, anchor=tk.W, width=530, height=120)
-
-        self.refresh_button = ttk.Button(master, text="Refresh", command=self.refresh_json_count, style="TButton")
-        self.refresh_button.place(relx=0.9, rely=0.83, anchor=tk.CENTER)
-
-        self.refresh_json_count()
-
+        self.tree_MetaData_count.place(relx=0.295, rely=0.32, anchor=tk.W, width=530, height=120)
+    #Launchers
     def launch_playbook_application(self):
         subprocess.run(["python", "Tools/PlayBookConv.py"])
 
