@@ -126,35 +126,37 @@ def display_results_on_treeview(directory, tree_json_count, tree_schema_count, t
     for metadata in metadata_info:
         tree_metadata_count.insert("", "end", values=[metadata['File Name'], metadata['Creation Date'], metadata['Modified Date']])
 
+#GUI config
 class MyGUI:
     def __init__(self, master):
         self.master = master
         master.title("Sentinel DevOps Tooling")
-        master.geometry("800x600")
+        master.geometry("950x500")
         master.resizable(False, False)
 
         # Use a Frame to hold the background image
         self.background_frame = ttk.Frame(master)
         self.background_frame.place(x=0, y=0, relwidth=1, relheight=1)
 
+        # Background image
         self.background_image = Image.open("Prereqs/Background.png")
         self.background_image = ImageTk.PhotoImage(self.background_image)
         self.background_label = tk.Label(self.background_frame, image=self.background_image)
         self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
-
+        #Titles
         title_label = ttk.Label(master, text="Sentinel DevOps Tooling", font=("Helvetica", 16))
         title_label.place(relx=0.5, rely=0.05, anchor=tk.CENTER)
 
         author_label = ttk.Label(master, text="By Tom Porter", font=("Helvetica", 10))
         author_label.place(relx=0.5, rely=0.1, anchor=tk.CENTER)
-
+        #Styling
         style = ttk.Style()
         style.theme_use("clam")
 
         style.configure("TButton",
                         font=("Helvetica", 10),
                         padding=5,
-                        background="purple4",
+                        background="black",
                         foreground="white"
                         )
         style.configure("PS.TButton",
@@ -204,10 +206,10 @@ class MyGUI:
         self.folder_path_entry.place(relx=0.86, rely=0.18, anchor=tk.CENTER)
         # Browse Button
         self.browse_button = ttk.Button(master, text="Browse", command=self.browse_folder, style="TButton")
-        self.browse_button.place(relx=0.78, rely=0.83, anchor=tk.CENTER)
+        self.browse_button.place(relx=0.8, rely=0.95, anchor=tk.CENTER)
         # Refresh Button
         self.refresh_button = ttk.Button(master, text="Refresh", command=self.refresh_json_count, style="TButton")
-        self.refresh_button.place(relx=0.9, rely=0.83, anchor=tk.CENTER)
+        self.refresh_button.place(relx=0.9, rely=0.95, anchor=tk.CENTER)
         self.refresh_json_count()
         # Exit Button
         self.exit_button = ttk.Button(master, text="Exit", command=master.destroy, style="Exit.TButton")
@@ -236,14 +238,14 @@ class MyGUI:
         self.tree_json_count.heading("Category", text="Category", anchor=tk.CENTER)
         self.tree_json_count.heading("Count", text="Count", anchor=tk.CENTER)
 
-        self.tree_json_count.place(relx=0.295, rely=0.52, anchor=tk.W, width=530, height=120)
+        self.tree_json_count.place(relx=0.295, rely=0.32, anchor=tk.W, width=650, height=120)
         # Schema Count Tree
         self.tree_schema_count = ttk.Treeview(master, columns=("Schema", "Count"), show="headings", height=5)
 
         self.tree_schema_count.heading("Schema", text="Schema", anchor=tk.CENTER)
         self.tree_schema_count.heading("Count", text="Count", anchor=tk.CENTER)
 
-        self.tree_schema_count.place(relx=0.295, rely=0.71, anchor=tk.W, width=530, height=120)
+        self.tree_schema_count.place(relx=0.295, rely=0.55, anchor=tk.W, width=650, height=120)
         # Meta Data Tree
         self.tree_MetaData_count = ttk.Treeview(master, columns=("File Name", "Creation Date", "Modified Date"), show="headings", height=5)
 
@@ -251,7 +253,7 @@ class MyGUI:
         self.tree_MetaData_count.heading("Creation Date", text="Creation Date", anchor=tk.CENTER)
         self.tree_MetaData_count.heading("Modified Date", text="Modified Date", anchor=tk.CENTER)
 
-        self.tree_MetaData_count.place(relx=0.295, rely=0.32, anchor=tk.W, width=530, height=120)
+        self.tree_MetaData_count.place(relx=0.295, rely=0.79, anchor=tk.W, width=650, height=120)
 
     # Launchers
     def launch_playbook_application(self):
