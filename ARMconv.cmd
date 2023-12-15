@@ -1,1 +1,0 @@
-python3 C:\Dev\ARMconv\ConverterGUI.py
