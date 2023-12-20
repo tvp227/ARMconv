@@ -1,64 +1,68 @@
-# ARMconv 
-### *Azure Sentinel Playbook and Workbook Converter*
-### Author: Tom Porter
+# ARMConv: Sentinel Security Engineering Tools Suite
 
-## Overview
-This suite of tools is designed to assist security engineers in Azure Sentinel deployments. The toolset can convert Sentinel playbooks and workbooks into dynamic templates, facilitating deployments across various domains. It also offers additional capabilities for converting KQL queries into ARM template formats.
+Welcome to ARMConv, a toolkit designed to assist security engineers in the development of Azure Sentinel configurations. This collection of tools is created by Tom Porter to streamline various tasks related to ARM template conversion, Azure CLI usage, documentation aid, API interactions, and more.
 
-## Features
+## Getting Started
 
-- Converts Playbooks and Workbooks to ARM templates.
-- Replaces static variables with dynamic values.
-- Converts KQL queries into ARM template formats.
-- Facilitates deployment in various Azure Sentinel environments.
+### Prerequisites
 
-## Prerequisites
+Before using ARMConv, make sure you have the following prerequisites installed:
 
-- Python 3.x installed on your machine.
-- Ensure that the required Python packages are installed. You can install them using:
+- Python 3.x
+- Tkinter library (for GUI)
+- PowerShell (for specific functionalities)
+- Relevant dependencies mentioned in the tool scripts
+
+### Installation
+
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/tvp227/ARMConv.git
+    cd ARMConv
+    ```
+
+2. Install required dependencies:
 
     ```bash
     pip install -r requirements.txt
     ```
-- Access to a Sentinel instance.
-  
-## Usage
 
-1. Clone this repository:
+### Usage
 
-    ```bash
-    git clone https://github.com/tvp227/ARMconv.git
-    ```
+Run the main script to launch the ARMConv toolbox:
 
-2. Navigate to the project directory:
+```bash
+python main.py
+``````
+## Features
 
-    ```bash
-    cd ARMConv
-    ```
+ARMConv provides the following tools to enhance your Sentinel security engineering workflow:
 
-3. Run the converter script:
+1. **ARM Template Conversion**
+   - Convert ARM templates easily with the dedicated script.
 
-    ```bash
-    python ConverterGUI.py
-    ```
+2. **Azure CLI Automation**
+   - Generate Azure CLI commands for ARM template deployment using PowerShell.
 
-4. The converted templates can overwrite the original or be saved wherever the user sees fit. The additional tools available help adjust and manage the code used for Sentinel deployments.
+3. **Documentation Aid**
+   - Access a tool to aid in documentation-related tasks.
 
-## Example
-#### *GUI- All the tools available*
+4. **API Interaction**
+   - Perform API requests with the provided script.
 
-![image](https://github.com/tvp227/ARMconv/assets/46229276/b73fc7f8-eeae-4896-bba5-5dc5df13c92e)
+5. **KQL Crowbar**
+   - Utilize a tool for KQL (Kusto Query Language) conversion.
 
+6. **Content Summary**
+   - Analyze and summarize ARM templates content.
 
-#### *When converting templates it will lists the variables and highlights the conversions being implemented*
+7. **CamelCase Conversion**
+   - Convert text to CamelCase format effortlessly.
 
-![Example Image 3](https://github.com/tvp227/ARMconv/assets/46229276/50fda650-b493-4b49-bfac-081cc77c1258)
-![Example Image 4](https://github.com/tvp227/ARMconv/assets/46229276/6d9675d7-107f-4935-b581-111bf2ab761f)
+8. **AR Tactics Summary**
+   - Extract tactics from ARM templates.
 
-#### *Changes to parameters made*
+9. **Rule Enablement**
+   - Enable rules efficiently using the Rule Enablement script.
 
-![Example Image 5](https://github.com/tvp227/ARMconv/assets/46229276/b373388d-37d3-4bd0-8a76-ce8ccb3414d2) ![Example Image 6](https://github.com/tvp227/ARMconv/assets/46229276/01a11a0b-d6d7-4262-8d59-aa76b2eb5893)
-
-### *Additional tools*
-#### *KQL converter - Input the KQL query and will output text appropriate for template consumption*
-![Screenshot 2023-11-16 221742](https://github.com/tvp227/ARMconv/assets/46229276/f741c975-e50a-4ce1-8762-fcbfb101e845)
