@@ -66,3 +66,11 @@ ARMConv provides the following tools to enhance your Sentinel security engineeri
 9. **Rule Enablement**
    - Enable rules efficiently using the Rule Enablement script.
 
+# ScreenShots
+
+ ![image](https://github.com/tvp227/ARMconv/assets/46229276/a950bab7-4c00-4750-b64a-f8888ba9b980)![image](https://github.com/tvp227/ARMconv/assets/46229276/2fe07b4f-7b47-44c7-bd8d-8165b23ff602)
+![image](https://github.com/tvp227/ARMconv/assets/46229276/b18c693b-3c99-48f0-ba84-79395edd2f32)![image](https://github.com/tvp227/ARMconv/assets/46229276/7eda64a0-81f4-474f-9c6a-45dcc73b54a2)
+![image](https://github.com/tvp227/ARMconv/assets/46229276/9da52664-2675-4169-ba81-28966d20c8cb) ![image](https://github.com/tvp227/ARMconv/assets/46229276/f4b25ce1-c6fd-4068-89b8-3dbc2c3630c4)
+
+
+
