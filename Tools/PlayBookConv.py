@@ -62,7 +62,7 @@ def load_and_convert_template():
 
         connection_ids = get_connection_ids(json_data)
         formatted_connection_ids = {
-            get_last_segment(id): get_connection_id_format(id, "subscription().subscriptionId", "resourceGroup().location")
+            get_last_segment(id): get_connection_id_format(id, "subscription().SubscriptionID", "resourceGroup().location")
             for id in connection_ids
         }
 
@@ -109,7 +109,7 @@ def extract_default_values(template_data):
         last_segment = get_last_segment(default_value)
         default_values[param_name] = get_connection_id_format(
             last_segment,
-            "subscription().subscriptionId",
+            "subscription().SubscriptionID",
             "resourceGroup().location"
         )
 

@@ -249,8 +249,8 @@ Function FixJsonIndentation ($jsonOutput) {
 
 Function BuildPlaybookArmId() {
     Try {
-        if ($PlaybookSubscriptionId -and $PlaybookResourceGroupName -and $PlaybookResourceName) {
-            return "/subscriptions/$PlaybookSubscriptionId/resourceGroups/$PlaybookResourceGroupName/providers/Microsoft.Logic/workflows/$PlaybookResourceName"
+        if ($PlaybookSubscriptionID -and $PlaybookResourceGroup -and $PlaybookResourceName) {
+            return "/subscriptions/$PlaybookSubscriptionID/resourceGroups/$PlaybookResourceGroup/providers/Microsoft.Logic/workflows/$PlaybookResourceName"
         }
     }
     catch {
@@ -397,7 +397,7 @@ Function HandlePlaybookApiConnectionReference($apiConnectionReference, $playbook
                 "customParameterValues"= [ordered] @{}
                 "parameterValueType"= $connectionAuthenticationType
                 "api"= [ordered] @{
-                    "id"= "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/$connectorType/$connectionName')]"
+                    "id"= "[concat('/subscriptions/', subscription().SubscriptionID, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/$connectorType/$connectionName')]"
                 }
             }
         }
@@ -411,7 +411,7 @@ Function HandlePlaybookApiConnectionReference($apiConnectionReference, $playbook
         $apiConnectionReference.Value = [ordered] @{
             "connectionId"= "[resourceId('Microsoft.Web/connections', variables('$connectionVariableName'))]"
             "connectionName" = "[variables('$connectionVariableName')]"
-            "id" = "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/$connectorType/$connectionName')]"
+            "id" = "[concat('/subscriptions/', subscription().SubscriptionID, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/$connectorType/$connectionName')]"
             "connectionProperties" = $apiConnectionReference.Value.connectionProperties
         }
         if (!$apiConnectionReference.Value.connectionProperties) {
@@ -569,9 +569,9 @@ foreach($GetSubscription in $GetSubscriptions) {
                 $PlaybookARMParameters = [ordered] @{}
                 $templateVariables = [ordered] @{}
 
-                $PlaybookSubscriptionId = $GetSubscription.id
+                $PlaybookSubscriptionID = $GetSubscription.id
                 $PlaybookResourceName = $LogicApp.Name
-                $PlaybookResourceGroupName = $LogicApp.ResourceGroupName
+                $PlaybookResourceGroup = $LogicApp.ResourceGroup
 
                 $playbookResource = GetPlaybookResource
                 
