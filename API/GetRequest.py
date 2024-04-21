@@ -4,9 +4,9 @@ import tkinter as tk
 from tkinter import messagebox, simpledialog
 
 # Define your environment ##ESENTIAL 
-SubscriptionID = ""
-ResourceGroup = ""
-Workspace = ""
+SubscriptionID = "23c90a0f-9d57-4ab9-8ee4-48a134d27103"
+ResourceGroup = "ArugaCyber-MDR-ArugaCyber"
+Workspace = "arugacyber-mdr-arugacyber"
 
 def make_authenticated_request(bearer_token, url):
     full_url = url.format(SubscriptionID=SubscriptionID, ResourceGroup=ResourceGroup, Workspace=Workspace)

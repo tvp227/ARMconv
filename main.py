@@ -3,9 +3,38 @@ from tkinter import ttk, PhotoImage
 import subprocess
 import getpass
 import sys
+import os
 
+# Function to install required packages
+def install_packages(requirements_file):
+    try:
+        with open(requirements_file, 'r') as file:
+            packages = file.read().splitlines()
+            for package in packages:
+                os.system(f"{sys.executable} -m pip install {package}")
+                print(f"Installed {package}")
+    except FileNotFoundError:
+        print("Requirements file not found.")
+
+# Main function
+def main():
+    # Your main script code here
+    print("Running main script...")
+
+if __name__ == "__main__":
+    # Path to requirements.txt
+    requirements_file = "requirements.txt"
+    
+    # Check and install required packages
+    install_packages(requirements_file)
+    
+    # Run main script
+    main()
+
+
+##Main
 def execute_script_py(script):
-    subprocess.Popen(["python3", script])
+    subprocess.Popen(["python", script])
     sys.exit()
 
 def execute_script_ps1(script):
