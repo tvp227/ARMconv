@@ -9,6 +9,7 @@ class GUI:
         # Create buttons
         self.create_button("Playbook Convertion", self.launch_playbook_application)
         self.create_button("Workbook Convertion", self.launch_workbook_application)
+        self.create_button("Automation Rule Convertion", self.launch_AutoRule_application)
 
     def create_button(self, text, command):
         button = tk.Button(self.master, text=text, command=command)
@@ -19,6 +20,9 @@ class GUI:
 
     def launch_workbook_application(self):
         subprocess.run(["python", "Tools/WorkBookConv.py"])
+
+    def launch_AutoRule_application(self):
+        subprocess.run(["python", "Tools/AutomationRuleConv.py"])
 
 if __name__ == "__main__":
     root = tk.Tk()
