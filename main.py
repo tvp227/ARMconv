@@ -23,7 +23,7 @@ def main():
 
 if __name__ == "__main__":
     # Path to requirements.txt
-    requirements_file = "requirements.txt"
+    requirements_file = "Prereqs/requirements.txt"
     
     # Check and install required packages
     install_packages(requirements_file)
