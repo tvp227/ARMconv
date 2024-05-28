@@ -44,14 +44,14 @@ def execute_script_ps1(script):
 def create_main_window():
     window = tk.Tk()
     window.title("ARMConv by Tom Porter")
-    window.geometry("300x600")
+    window.geometry("300x650")
     window.resizable(False, False)
 
     # Load background image
     background_image = PhotoImage(file="Prereqs/background.png")
 
     # Create a canvas for the background
-    canvas = tk.Canvas(window, width=300, height=600)
+    canvas = tk.Canvas(window, width=300, height=650)
     canvas.pack()
     canvas.create_image(0, 0, anchor=tk.NW, image=background_image)
 
@@ -66,6 +66,7 @@ def create_main_window():
 
     buttons = [
         ("ARM Template Conversion", lambda: execute_script_py("Tk/ArmTemplateConvertion.py")),
+        ("JSON Decompress", lambda: execute_script_py("Tk/JsonDecompress.py")),
         ("Azure CLI", lambda: execute_script_ps1("Powershell/Playbook_ARM_Template_Generator.ps1")),
         ("Documentation Aid", lambda: execute_script_py("Tk/DocumentationAID.py")),
         ("API", lambda: execute_script_py("API/GetRequest.py")),
