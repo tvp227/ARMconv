@@ -1,38 +1,47 @@
-import os
 import json
 import tkinter as tk
 from tkinter import filedialog
 
-def merge_json_files(directory_path, output_file_name):
-    merged_data = []
-    
-    # Iterate over all files in the directory
-    for filename in os.listdir(directory_path):
-        if filename.endswith(".json"):
-            file_path = os.path.join(directory_path, filename)
-            with open(file_path, 'r') as file:
-                try:
-                    data = json.load(file)
-                    merged_data.extend(data)
-                except json.JSONDecodeError:
-                    print(f"Error decoding JSON file: {file_path}")
+def extract_id_and_properties(json_data):
+    id_number = json_data.get("name")
+    if id_number:
+        id_number = id_number.split("/")[-1]  # Extracting only the UUID part
+    properties = json_data.get("properties", {})
+    return id_number, properties
 
-    # Write merged data to output file
-    with open(output_file_name, 'w') as output_file:
-        json.dump(merged_data, output_file, indent=4)
+def select_json_file():
+    file_path = filedialog.askopenfilename(filetypes=[("JSON files", "*.json")])
+    if file_path:
+        with open(file_path, "r") as file:
+            json_data = json.load(file)
+            id_number, properties = extract_id_and_properties(json_data)
+            generate_template(id_number, properties)
 
-def select_directory():
-    directory_path = filedialog.askdirectory(title="Select Directory")
-    if directory_path:
-        output_file_name = os.path.join(directory_path, "merged_AnalyticRules.json")
-        merge_json_files(directory_path, output_file_name)
-        print("JSON files merged successfully.")
+def generate_template(id_number, properties):
+    template = {
+        "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+        "contentVersion": "1.0.0.0",
+        "parameters": {
+            "workspace": {
+                "type": "String"
+            }
+        },
+        "resources": [
+            {
+                "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/automationRules/', '{}')]".format(id_number),
+                "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/', '{}')]".format(id_number),
+                "type": "Microsoft.OperationalInsights/workspaces/providers/automationRules",
+                "kind": "Scheduled",
+                "apiVersion": "2019-01-01-preview",
+                "properties": properties
+            }
+        ]
+    }
+    print(json.dumps(template, indent=4))
 
-def main():
-    root = tk.Tk()
-    root.withdraw()  # Hide the main window
+# Create Tkinter window
+root = tk.Tk()
+root.withdraw()  # Hide the root window
 
-    select_directory()
-
-if __name__ == "__main__":
-    main()
+# Select JSON file using file dialog
+select_json_file()
