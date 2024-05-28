@@ -1,6 +1,7 @@
 import os
 import tkinter as tk
 from tkinter import filedialog
+import time
 
 def count_json_files(folder_path):
     json_count = {'Analytics': 0, 'Hunting': 0, 'Playbooks': 0, 'Workbooks': 0, 'Total': 0}
@@ -43,6 +44,8 @@ window.withdraw()
 
 # Automatically open file dialog upon running
 select_folder()
+
+time.sleep (3)
 
 # Destroy the main window
 window.destroy()
