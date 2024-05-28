@@ -1,12 +1,18 @@
+import os
 import requests 
 import json
 import tkinter as tk
 from tkinter import messagebox, simpledialog
+from dotenv import load_dotenv
 
-# Define your environment ##ESENTIAL 
-SubscriptionID = ""
-ResourceGroup = ""
-Workspace = ""
+# Load environment variables from .env in the 'prereqs' folder
+dotenv_path = os.path.join("prereqs", ".env")
+load_dotenv(dotenv_path)
+
+# Retrieve environment variables
+SubscriptionID = os.getenv('SUBSCRIPTION_ID')
+ResourceGroup = os.getenv('RESOURCE_GROUP')
+Workspace = os.getenv('WORKSPACE')
 
 def make_authenticated_request(bearer_token, url):
     full_url = url.format(SubscriptionID=SubscriptionID, ResourceGroup=ResourceGroup, Workspace=Workspace)
